@@ -1,54 +1,61 @@
 let password = prompt("Please enter password");
 if(password=="1234") {
-    document.getElementById("container").style.display="block";
+    document.getElementById("loading_screen").style.display="block";
     document.getElementById("preloader").style.display="none";
 }
 else {
     alert("wrong password")
     window.location.reload();
 }
-    var html=""
+    var html="<tr><th>User info</th><th>Timestamp</th></tr>";
     var name,email,redno,code,t;
-  //  var name = firebase.database().ref('userdata/'+localStorage.getItem('emails'));
     var hjcordiref= firebase.database().ref("userinfo/");
     hjcordiref.on("child_added", function(data){
-    
-    var pathe= firebase.database().ref("userinfo/"+data.key)
+    var item=data.val();
+    console.log(item);
+    html+=`<tr>
+            <td>
+                <ul>
+                    <li><span class="lis">Name: &nbsp;</span>${item.name}</li>
+                    <li><span class="lis">email: &nbsp;</span>${item.email}</li>
+                    <li><span class="lis">Regd. No.: &nbsp;</span>${item['Registration number']}</li>
+                    <li><span class="lis">Invitation code: &nbsp;</span>${item['Invitation code']}</li>
+                    <li><span class="lis">Time of registration: &nbsp;</span>${item.time}</li>
+                </ul>
+            </td>
+            <td>`
+    var pathe= firebase.database().ref("userinfo/"+data.key+"/imgs")
         pathe.on("child_added",function(data){  
-            
-            var item=data.val();
-            console.log(item);
-            var innerpath=firebase.database().ref(innerpath+"/imgs");
-            
-            innerpath.on("child_added",function(data){
-                console.log("22")
-                var innermost=firebase.database().ref(innermost+data.key);
-                innermost.on("child_added",function(){
-                    console.log("24")
-                    var innermostitem=data.val();
+            console.log(data.val())
+            var inneritem=data.val();
+            console.log(inneritem.imgurl)
+            console.log(inneritem.timestamp)
+                html+=` 
+                    <tr>
+                        <td>
+                        <img src="${inneritem.imgurl}">
+                        </td>
+                        <td>${inneritem.timestamp}</td>
+                    </tr>`
+                //})
                 
-                     html+=` 
-                    <td>
-                        <ul>
-                            <li>Name: ${item.name}</li>
-                            <li>email: ${item.email}</li>
-                            <li>Regd. No.: ${item.registration_number}</li>
-                            <li>Invitation code: ${item.invitation_code}</li>
-                            <li>Time of registration: ${item.name}</li>
-                        </ul>
-                    </td>
-                <td>
-                    <td>${innermostitem.imgurl}</td>
-                    <td>${innermostitem.timestamp}</td>
-                </td>`
-                })
-                
-            });
+
             
         });
+        setTimeout(function(){
+            html+="</td></tr>"
+        },7000);
+        
     });
 
-    document.getElementById("participants").innerHTML += html;
+    // console.log(html)
+    setTimeout(function(){
+        console.log()
+        document.getElementById("participants").innerHTML += html;
+        document.getElementById("loading_screen").style.display="none";
+        document.getElementById("container").style.display="block";
+    },6000);
+    
 
        
 
