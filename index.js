@@ -34,7 +34,7 @@ function callvalue(event){
     console.log(res.key)
     localStorage.setItem("key",res.key)
         console.log("Data sent successfully!");
-        window.open("camera/camera.html", "_self")             
+        window.open("camera/camera.html","extension_popup","status=no,scrollbars=yes,resizable=no")             
     });    
 
     console.log(name);
