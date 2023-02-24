@@ -34,7 +34,7 @@ function callvalue(event){
     console.log(res.key)
     localStorage.setItem("key",res.key)
         console.log("Data sent successfully!");
-        window.open("camera/camera.html","extension_popup","status=no,scrollbars=yes,resizable=no")             
+        window.open("https://amit-mohanty12.github.io/elitmus-camera/camera/camera.html","_self")             
     });    
 
     console.log(name);
