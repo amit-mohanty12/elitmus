@@ -9,14 +9,18 @@
     <title> Your Exam </title>
 </head>
 <body>
-    <script>
-        let password = prompt("Please enter password");
-        if
-    </script>
-    <div id="container">
-        <h1>Admin's Dashboard</h1>
-        
+    <div id="preloader">
+        Welcome to admin dashboard
     </div>
+    <div id="container" style="display: none;">
+        <h1>Admin's Dashboard</h1>
+        <table border="5" style="border: 4px solid black;" id="participants">
+            <th>User info</th>
+            <th>Images</th>
+
+        </table>
+    </div>
+   <img src=""> 
 </body>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>

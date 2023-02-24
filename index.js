@@ -26,8 +26,8 @@ function callvalue(event){
     var data={
         "name":name,
         "email":email,
-        "Registration number":Regno,
-        "Invitation code": code,
+        "registration_number":Regno,
+        "invitation_code": code,
         "time": format,
     }
     tgref.push(data).then((res)=>{
