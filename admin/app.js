@@ -42,9 +42,9 @@ else {
 
             
         });
-        setTimeout(function(){
+        // setTimeout(function(){
             html+="</td></tr>"
-        },7000);
+        // },7000);
         
     });
 
